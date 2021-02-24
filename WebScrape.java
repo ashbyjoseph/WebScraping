@@ -16,9 +16,11 @@ public class WebScrape {
 			final Document document = Jsoup.connect(url).get();// creates a connection
 
 			for (Element row : document.select("table.tablesorter.full tr")) {// tr gets you the row from the table
-																				// which is table.tablesorter.full
+											 // which is table.tablesorter.full
+				
+				
 				if (row.select("td:nth-of-type(1)").text().equals("")) { // helps you get the whole row of stock symbols
-																			// from the webpage
+										         // from the webpage
 					continue;
 				} else {
 					final String ticker = row.select("td:nth-of-type(1)").text(); // first part of the row
@@ -30,8 +32,8 @@ public class WebScrape {
 					final String priceWithoutComma = priceWithcomma.replace(",", "");
 					// System.out.println(priceWithoutComma);
 					final double price = Double.parseDouble(priceWithoutComma); // this converts price without comma to
-																				// double so that you can do operations
-																				// on price in the future if you want.
+												    // double so that you can do operations
+								                                    // on price in the future if you want.
 
 					System.out.println(
 							"Stock " + ticker + ":" + name + ". Has a price of " + price + " dollars per share.\n");
